@@ -1,0 +1,135 @@
+📚 Library Management System
+👋 Introduction
+The Library Management System is a web-based application we built to streamline and digitize library operations such as managing books, members, and loan transactions. It’s built using ASP.NET Core MVC for the backend and MongoDB as the database. This project was a collaborative effort by our team of three—Inam Karim, Zeeshan, and Alina.
+
+🎯 Objectives
+Provide a simple and user-friendly platform for librarians.
+
+Automate issuing and returning of books.
+
+Maintain accurate records of books, members, and transactions.
+
+Apply modern design principles and web technologies.
+
+🧰 Technology Stack
+Backend: ASP.NET Core MVC (C#)
+
+Frontend: Razor Views, Bootstrap 4
+
+Database: MongoDB (NoSQL)
+
+Tools Used: Visual Studio, Entity Framework (if applicable)
+
+🏗️ System Architecture
+We followed the Model-View-Controller (MVC) pattern:
+
+Models: Represent data (Book, Member, Loan, LoanViewModel).
+
+Views: Razor pages for interaction (forms, tables, modals).
+
+Controllers: Handle requests, data processing, and communication.
+
+Repositories: Handle MongoDB access logic cleanly and modularly.
+
+🗃️ Database Design
+📘 Book Collection
+json
+Copy
+Edit
+{
+  "Id": "ObjectId",
+  "Title": "string",
+  "Author": "string",
+  "ISBN": "string",
+  "PublishedYear": "int",
+  "AvailableCopies": "int"
+}
+👤 Member Collection
+json
+Copy
+Edit
+{
+  "Id": "ObjectId",
+  "FullName": "string",
+  "Email": "string",
+  "PhoneNumber": "string"
+}
+🔁 Loan Collection
+json
+Copy
+Edit
+{
+  "Id": "ObjectId",
+  "BookId": "ObjectId",
+  "MemberId": "ObjectId",
+  "LoanDate": "DateTime",
+  "ReturnDate": "DateTime (nullable)"
+}
+✨ Core Features
+📚 Book Management
+Add, edit, delete, and list books.
+
+Validate required fields and unique ISBNs.
+
+Track and display available copies.
+
+👥 Member Management
+Manage members (Add/Edit/Delete).
+
+Validate inputs like email and phone number.
+
+🔄 Loan Management
+Issue books only if available.
+
+Return books and update available copies.
+
+Display active loans with book and member names using LoanViewModel.
+
+💻 User Interface
+Responsive Bootstrap UI.
+
+Interactive tables and modals.
+
+Easy-to-use CRUD forms.
+
+⚙️ Implementation Highlights
+Used LoanViewModel to combine book and member info in loan listings.
+
+Implemented Repository Pattern for clean MongoDB access.
+
+Integrated Client-side and Server-side Validation.
+
+Built user-friendly error handling and alerts.
+
+🧩 Challenges & Solutions
+Challenge	Solution
+Displaying related data	Created a LoanViewModel to join book/member info for easy display.
+File lock issues during development	Ensured processes were closed before rebuilding the project.
+Ensuring data consistency	Applied strong validation rules and user feedback on errors.
+
+🚀 Future Enhancements
+Add user login system with roles (admin/librarian).
+
+Search and filter for books and members.
+
+Generate reports like "Most Borrowed Books".
+
+Send email reminders for overdue books.
+
+Improve UI with AJAX and live updates.
+
+✅ Conclusion
+Our Library Management System successfully implements the core features needed for managing a library. It shows how ASP.NET Core MVC and MongoDB can work together to build a reliable and cleanly structured web application. We’ve learned a lot throughout this project and look forward to adding more advanced features in the future.
+
+📸 Appendix
+Screenshots of Books, Members, and Loans pages.
+
+Code samples for controller logic and view models (available on request).
+
+Developed by Team:
+
+👨‍💻 Inam Karim
+
+👨‍💻 Zeeshan
+
+👩‍💻 Alina
