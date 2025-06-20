@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Issue Book";
+    var books = ViewBag.Books as List<LibraryManagementSystem.Models.Book>;
+    var members = ViewBag.Members as List<LibraryManagementSystem.Models.Member>;
+}
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card">
+            <div class="card-header">Issue Book</div>
+            <div class="card-body">
+                <form asp-action="Issue" method="post">
+                    <div class="mb-3">
+                        <label for="bookId" class="form-label">Book</label>
+                        <select class="form-select" id="bookId" name="bookId" required>
+                            <option value="">-- Select Book --</option>
+                            @foreach (var book in books)
+                            {
+                                <option value="@book.Id">@book.Title (@book.AvailableCopies available)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="memberId" class="form-label">Member</label>
+                        <select class="form-select" id="memberId" name="memberId" required>
+                            <option value="">-- Select Member --</option>
+                            @foreach (var member in members)
+                            {
+                                <option value="@member.Id">@member.FullName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <button type="submit" class="btn btn-success">Issue</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 

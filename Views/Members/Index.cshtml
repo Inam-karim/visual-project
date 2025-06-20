@@ -1,0 +1,78 @@
+@model IEnumerable<LibraryManagementSystem.Models.Member>
+@{
+    ViewData["Title"] = "Members";
+}
+@if (TempData["Debug"] != null)
+{
+    <div class="alert alert-info">@TempData["Debug"]</div>
+}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Members</span>
+                <a class="btn btn-primary btn-sm" asp-action="Create"><i class="fas fa-plus me-1"></i> Add Member</a>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th style="width:120px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var member in Model)
+                    {
+                        <tr>
+                            <td>@member.FullName</td>
+                            <td>@member.Email</td>
+                            <td>@member.PhoneNumber</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning me-1" asp-action="Edit" asp-route-id="@member.Id"><i class="fas fa-edit"></i></a>
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMemberModal" data-id="@member.Id" data-title="@member.FullName"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-labelledby="deleteMemberModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="deleteMemberForm" method="post">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteMemberModalLabel">Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete <span id="modalMemberTitle" class="fw-bold"></span>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@section Scripts {
+    <script>
+        var deleteMemberModal = document.getElementById('deleteMemberModal');
+        deleteMemberModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var memberId = button.getAttribute('data-id');
+            var memberTitle = button.getAttribute('data-title');
+            var modalTitle = deleteMemberModal.querySelector('#modalMemberTitle');
+            var form = deleteMemberModal.querySelector('#deleteMemberForm');
+            modalTitle.textContent = memberTitle;
+            form.action = '/Members/DeleteConfirmed/' + memberId;
+        });
+    </script>
+} 
