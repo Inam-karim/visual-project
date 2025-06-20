@@ -102,3 +102,4 @@ E:\Visual Programming\LibraryManagementSystem\obj\Debug\net9.0\LibraryManagement
 E:\Visual Programming\LibraryManagementSystem\obj\Debug\net9.0\LibraryManagementSystem.genruntimeconfig.cache
 E:\Visual Programming\LibraryManagementSystem\obj\Debug\net9.0\ref\LibraryManagementSystem.dll
 E:\Visual Programming\LibraryManagementSystem\obj\Debug\net9.0\compressed\fwcji6d7r2-b1x2c6un9j.gz
+E:\Visual Programming\LibraryManagementSystem\obj\Debug\net9.0\LibraryManagementSystem.sourcelink.json
